@@ -1,6 +1,7 @@
 import express from "express";
-const now = new Date();
+import db from "./config/database"
 
+const now = new Date();
 //routes import baby
 import auth from "./routes/auth"
 
@@ -15,6 +16,7 @@ app.get("/health", (req, res) => {
   res.json({ status: "ok",timeStamp: now.toLocaleString() });
 });
 
-app.listen(3000, () => {
+app.listen(3000, async () => {
+  await db();
   console.log("Beacon listening on port 3000");
 });
